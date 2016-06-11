@@ -1,6 +1,3 @@
-CHILD_PROCESS = `require('child_process')`
-require 'console'
-
 def puts(str)
   $console.log(str)
 end

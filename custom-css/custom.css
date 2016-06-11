@@ -1,16 +1,30 @@
 body {
-  padding-top: 20px;
+  padding-left: 68px;
+  -webkit-user-select: none;
+}
+
+.content {
+  padding-left: 20px;
+  padding-top: 40px;
   padding-bottom: 20px;
   padding-right: 20px;
-  padding-left: 100px;
+}
+
+#spec-progress {
+  position: absolute;
+  top: 0px;
+  left: -2px;
+  right: -2px;
+  -webkit-app-region: drag;
 }
 
 .sidebar {
+  -webkit-app-region: drag;
   position: absolute;
   background: #333645;
   color: #FFFFFF;
   font-size: 32px;
-  width: 80px;
+  width: 68px;
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -21,3 +35,4 @@ body {
 .sidebar .glyphicon {
   padding-top: 20px;
 }
+

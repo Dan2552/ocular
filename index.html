@@ -11,57 +11,64 @@
     <link href="custom-css/custom.css" rel="stylesheet">
   </head>
   <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Evie</a> </div> <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-3">
-          <button type="button" id="btn-run-all-tests" class="btn btn-default navbar-btn navbar-right">Run all specs</button>
+      <div id="spec-progress" class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 0%"></div>
+<!--         <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 35%">
+          <span class="sr-only">35% Complete (success)</span>
         </div>
+        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 20%">
+          <span class="sr-only">20% Complete (warning)</span>
+        </div>
+        <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 10%">
+          <span class="sr-only">10% Complete (danger)</span>
+        </div> -->
       </div>
-    </nav>
 
-    <div class="sidebar">
-      <span class="glyphicon glyphicon-check" aria-hidden="true"></span></br>
-      <span class="glyphicon glyphicon-console" aria-hidden="true"></span></br>
-    </div>
+    <div class="content">
 
-    <div class="progress">
-      <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 35%">
-        <span class="sr-only">35% Complete (success)</span>
+      <div class="input-group">
+        <input id="input-project-dir" type="text" class="form-control" placeholder="Project directory...">
+        <span class="input-group-btn">
+          <button id="btn-choose-project-dir" class="btn btn-default" type="button">Choose</button>
+        </span>
       </div>
-      <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 20%">
-        <span class="sr-only">20% Complete (warning)</span>
-      </div>
-      <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 10%">
-        <span class="sr-only">10% Complete (danger)</span>
-      </div>
-    </div>
 
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Panel title</h3>
+      <div class="sidebar">
+        <span class="glyphicon glyphicon-check" aria-hidden="true"></span></br>
+        <span class="glyphicon glyphicon-console" aria-hidden="true"></span></br>
       </div>
-      <div class="panel-body">
-        <button class="btn btn-success btn-xs dropdown-toggle" type="button">
-          <i class="fa fa-check" aria-hidden="true"></i>
-        </button>
-        <button class="btn btn-default btn-xs dropdown-toggle" type="button">
-          <i class="fa fa-check" aria-hidden="true"></i>
-        </button>
-        <button class="btn btn-default btn-xs dropdown-toggle" type="button">
-          <i class="fa fa-check" aria-hidden="true"></i>
-        </button>
-        <button class="btn btn-default btn-xs dropdown-toggle" type="button">
-          <i class="fa fa-check" aria-hidden="true"></i>
-        </button>
-        <button class="btn btn-default btn-xs dropdown-toggle" type="button">
-          <i class="fa fa-check" aria-hidden="true"></i>
-        </button>
-        <button class="btn btn-default btn-xs dropdown-toggle" type="button">
-          <i class="fa fa-check" aria-hidden="true"></i>
-        </button>
-      </div>
-    </div>
+
+
+
+
+      <div id="spec-results">
+<!--         <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+          </div>
+          <div class="panel-body">
+            <button class="btn btn-success btn-xs dropdown-toggle" type="button">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-default btn-xs dropdown-toggle" type="button">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-default btn-xs dropdown-toggle" type="button">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-default btn-xs dropdown-toggle" type="button">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-default btn-xs dropdown-toggle" type="button">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-default btn-xs dropdown-toggle" type="button">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div> -->
+      </div> <!-- /spec-results -->
+    </div> <!-- /content -->
   </body>
 
   <script>
