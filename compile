@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+bundle check >/dev/null || bundle install >/dev/null
+
+opal --include "." --gem opal-jquery --compile renderer.rb > renderer.js

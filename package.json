@@ -1,0 +1,31 @@
+{
+  "name": "ocular",
+  "version": "0.1.0",
+  "description": "Mac app front-end for Ruby tests (starting with rspec)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dan2552/ocular.git"
+  },
+  "keywords": [
+    "rspec",
+    "gui",
+    "front-end",
+    "mac"
+  ],
+  "author": "Dan2552",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dan2552/ocular/issues"
+  },
+  "homepage": "https://github.com/Dan2552/ocular#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^1.1.1",
+    "bootstrap": "^3.3.6",
+    "jquery": "^1.11.3",
+    "font-awesome": "^4.6.3"
+  }
+}
