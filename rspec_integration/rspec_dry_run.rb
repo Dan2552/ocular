@@ -1,4 +1,3 @@
-require 'rspec'
 require 'rspec/core/formatters/base_text_formatter'
 
 class OcularDryRunFormatter < RSpec::Core::Formatters::BaseTextFormatter

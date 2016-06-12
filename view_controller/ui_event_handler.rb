@@ -1,6 +1,7 @@
 class UIEventHandler
   def initialize
     Element.find("#btn-choose-project-dir").on(:click) do
+      AppState.reset!
       AppState.shared_instance.project_path = Electron.show_open_dialog
     end
 
@@ -19,6 +20,11 @@ class UIEventHandler
     end
 
     AppState.shared_instance.observer = self
+  end
+
+  def reset!
+    Element.find("#spec-results").empty
+    Element.find("#console-content").html = ""
   end
 
   def project_path_was_set
@@ -84,6 +90,11 @@ class UIEventHandler
       percent = (progress[state].to_f / progress[:total].to_f) * 100
       element.css("width", "#{percent}%")
     end
+  end
+
+  def log_to_console(log)
+    console_content = Element.find("#console-content")
+    console_content.html = console_content.html + "</br>" + log
   end
 
   private

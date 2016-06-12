@@ -13,5 +13,5 @@ cd $1
 # TODO: read from Gemfile / .ruby-version file
 chruby $(cat Gemfile | grep "ruby \"" | tr -d '\n' | awk -F '"' '{print $2}')
 
-bundle check >/dev/null 2>/dev/null || bundle install
+bundle check >/dev/null || bundle install
 bundle exec rspec --require="$script_dir/rspec_dry_run.rb" --format="OcularDryRunFormatter" | grep "rspec .*:.* # .*"

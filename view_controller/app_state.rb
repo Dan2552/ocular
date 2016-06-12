@@ -3,8 +3,11 @@ class AppState
     @shared_instance ||= AppState.new
   end
 
-  def self.reset
+  def self.reset!
+    observer = shared_instance.observer
+    observer.reset!
     @shared_instance = nil
+    shared_instance.observer = observer
   end
 
   #########################
@@ -29,6 +32,10 @@ class AppState
     @specs << spec
     observer.spec_was_added(spec)
     observer.progress_update
+  end
+
+  def log_to_console(log)
+    observer.log_to_console(log)
   end
 
   def clear_specs!
