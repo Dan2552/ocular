@@ -8,4 +8,12 @@ class Spec
     self.description = description
     self.state = state
   end
+
+  def file
+    command.match(".\/(.*.rb)")[1]
+  end
+
+  def index
+    command.match("#{file}(.*)$")[1]
+  end
 end

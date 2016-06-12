@@ -9,17 +9,16 @@ class AppState
 
   #########################
 
-  attr_reader :project_path,
-              :observers
+  attr_reader :project_path
+  attr_accessor :observer
 
   def initialize
-    @observers = []
     clear_specs!
   end
 
   def project_path=(set)
     @project_path = set
-    observer_message(:project_path_was_set)
+    observer.project_path_was_set
   end
 
   def specs
@@ -28,24 +27,21 @@ class AppState
 
   def add_spec(spec)
     @specs << spec
-    observer_message(:spec_was_added)
+    observer.spec_was_added(spec)
+    observer.progress_update
   end
 
   def clear_specs!
     @specs = []
   end
 
-  def observer_message(message)
-    observers.each { |o| o.send(message) }
-  end
-
   def progress
-    # TODO: stub. This should generate from @specs objects
     {
-      untested: 100,
-      success: 0,
-      failure: 0,
-      pending: 0
+      untested: @specs.select { |s| s.state == :untested }.count,
+      success: @specs.select { |s| s.state == :success }.count,
+      failure: @specs.select { |s| s.state == :failure }.count,
+      pending: @specs.select { |s| s.state == :pending }.count,
+      total: @specs.count
     }
   end
 end

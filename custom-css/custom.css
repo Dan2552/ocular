@@ -13,14 +13,14 @@ body {
 #spec-progress {
   position: absolute;
   top: 0px;
-  left: -2px;
-  right: -2px;
+  left: 66px;
+  right: -3px;
   -webkit-app-region: drag;
 }
 
 .sidebar {
   -webkit-app-region: drag;
-  position: absolute;
+  position: fixed;
   background: #333645;
   color: #FFFFFF;
   font-size: 32px;
@@ -34,5 +34,19 @@ body {
 
 .sidebar .glyphicon {
   padding-top: 20px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.sidebar .glyphicon-active {
+  color: rgba(255, 255, 255, 1);
+}
+
+#console-content {
+  padding-left: 20px;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  font-family: "Andale Mono", monospace;
+  color: #000000;
 }
 

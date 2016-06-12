@@ -18,6 +18,8 @@ class RSpec
       AppState.shared_instance.specs.each do |spec|
         puts spec
       end
+
+      yield
     end
   end
 
