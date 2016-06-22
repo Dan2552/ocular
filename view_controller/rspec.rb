@@ -1,42 +1,45 @@
 class RSpec
-  def self.process_dry_run
+  def run
     puts "dry run"
 
     project_path = AppState.shared_instance.project_path
     return unless project_path
 
     AppState.shared_instance.clear_specs!
-    AppState.shared_instance.log_to_console("<strong># Launching dry run</strong>")
-    Electron.exec("./rspec_integration/launch_dry_run.sh #{project_path}", {}) do |error, stdout, stderr|
-      lines = stdout.split(/(\r?\n)/)
-      lines = lines.select { |l| l.include?("rspec")}
+    AppState.shared_instance.log_to_console("<strong># Launching Rspec</strong>")
 
-      lines.each do |line|
-        AppState.shared_instance.log_to_console(line)
-      end
+    rspec = Electron.child_process.spawn("./rspec_integration/launch_rspec.sh", [project_path])
 
-      error_lines = stderr.split(/(\r?\n)/)
-      error_lines.each do |line|
-        AppState.shared_instance.log_to_console(line)
-      end
+    rspec.stdout.on("data") do |data|
+      lines_from_data(data).each { |line| handle_test_result_line(line) }
+    end
 
-      lines.each do |line|
-        AppState.shared_instance.log_to_console(line)
-        command, description = line.split(" # ")
-        spec = Spec.new(command: command, description: description)
-        AppState.shared_instance.add_spec(spec)
-      end
+    rspec.stderr.on("data") do |data|
+      lines_from_data(data).each { |line| AppState.shared_instance.log_to_console(line) }
+    end
 
-      AppState.shared_instance.specs.each do |spec|
-        puts spec
-      end
-      AppState.shared_instance.log_to_console("<br/>")
+    rspec.on("close") do |code|
+      AppState.shared_instance.log_to_console("Rspec run finished with status: #{code}")
       yield
     end
   end
 
-  def self.run_all
-    # TODO
-    alert("unimplemented")
+  def handle_test_result_line(line)
+    splitter = "---|-|---"
+    return unless line.include?(splitter)
+
+    file_location, id, state, description = line.split(splitter)
+    spec = Spec.new id: id,
+                    file_location: file_location,
+                    state: state,
+                    description: description
+
+    AppState.shared_instance.add_or_update_spec(spec)
+  end
+
+  private
+
+  def lines_from_data(data)
+    data.JS.toString.split(/(\r?\n)/)
   end
 end

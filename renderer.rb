@@ -3,5 +3,6 @@ require 'opal-jquery'
 require_tree './view_controller'
 
 require 'console'
+require 'native'
 
 APP_STATE_HANDLER = UIEventHandler.new

@@ -11,7 +11,7 @@ source /usr/local/opt/chruby/share/chruby/chruby.sh
 cd $1
 
 # TODO: read from Gemfile / .ruby-version file
-chruby $(cat Gemfile | grep "ruby \"" | tr -d '\n' | awk -F '"' '{print $2}')
+chruby $(cat Gemfile | grep "ruby \"" | tr -d '\n' | awk -F '"' '{print $2}') >/dev/null 2>&1
 
 bundle check >/dev/null || bundle install
-bundle exec rspec --require="$script_dir/rspec_dry_run.rb" --format="OcularDryRunFormatter" | grep "rspec .*:.* # .*"
+bundle exec rspec --require="$script_dir/ocular_rspec_formatter.rb" --format="OcularRSpecFormatter"

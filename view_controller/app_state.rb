@@ -28,9 +28,12 @@ class AppState
     @specs.freeze
   end
 
-  def add_spec(spec)
-    @specs << spec
-    observer.spec_was_added(spec)
+  def add_or_update_spec(spec)
+    unless specs_include?(spec)
+      @specs << spec
+    end
+
+    observer.add_or_update_spec(spec)
     observer.progress_update
   end
 
@@ -50,5 +53,14 @@ class AppState
       pending: @specs.select { |s| s.state == :pending }.count,
       total: @specs.count
     }
+  end
+
+  #########################
+
+  private
+
+  def specs_include?(spec)
+    @specs.each { |s| return true if s.id == spec.id }
+    false
   end
 end

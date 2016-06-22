@@ -1,19 +1,17 @@
 class Spec
-  attr_accessor :command,
+  attr_accessor :id,
                 :description,
-                :state
+                :state,
+                :file_location
 
-  def initialize(command: nil, description: nil, state: :untested)
-    self.command = command
+  def initialize(id: nil, description: nil, state: :untested, file_location: nil)
+    self.id = id
     self.description = description
     self.state = state
+    self.file_location = file_location
   end
 
   def file
-    command.match(".\/(.*.rb)")[1]
-  end
-
-  def index
-    command.match("#{file}(.*)$")[1]
+    file_location.match("^(.*):")[1]
   end
 end

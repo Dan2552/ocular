@@ -31,13 +31,15 @@ class UIEventHandler
     element = Element.find("#input-project-dir")
     element.value = AppState.shared_instance.project_path
     progress_update
-    RSpec.process_dry_run do
+    RSpec.new.run do
       progress_update(active: false)
     end
   end
 
-  def spec_was_added(spec)
-    panel_id = spec.file.gsub("./", "").gsub("/", "-").gsub(".rb", "")
+  def add_or_update_spec(spec)
+    panel_id = classify(spec.file)
+    spec_button_id = classify(spec.id)
+
     panel = Element.id(panel_id)
     unless panel
       panel = HtmlElements.create_panel(
@@ -48,11 +50,9 @@ class UIEventHandler
       Element.find("#spec-results").append(panel)
     end
 
-    spec_buttons_container = Element.id("#{panel_id}-content")
-
-    spec_button_id = "#{panel_id}-#{spec.index}"
     spec_button = Element.id(spec_button_id)
     unless spec_button
+      spec_buttons_container = Element.id("#{panel_id}-content")
       spec_button = HtmlElements.spec_button(id: spec_button_id, icon: "hourglass-start")
       spec_buttons_container.append(spec_button)
     end
@@ -98,6 +98,16 @@ class UIEventHandler
   end
 
   private
+
+  def classify(string)
+    # ./spec/reminder_spec.rb[1:3]
+    string.gsub("./", "").
+           gsub("/", "-").
+           gsub("[", "-").
+           gsub(":", "-").
+           gsub("]", "-").
+           gsub(".rb", "")
+  end
 
   def element_for_state(state)
     Element.find("#spec-progress-#{state}")
