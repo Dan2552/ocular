@@ -53,7 +53,7 @@ class UIEventHandler
     spec_button = Element.id(spec_button_id)
     unless spec_button
       spec_buttons_container = Element.id("#{panel_id}-content")
-      spec_button = HtmlElements.spec_button(id: spec_button_id, icon: "hourglass-start")
+      spec_button = HtmlElements.spec_button(id: spec_button_id, icon: spec.icon_class)
       spec_buttons_container.append(spec_button)
     end
   end

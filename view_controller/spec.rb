@@ -14,4 +14,17 @@ class Spec
   def file
     file_location.match("^(.*):")[1]
   end
+
+  def icon_class
+    case state
+    when :untested
+      "hourglass-start"
+    when :success
+      "check"
+    when :failure
+      "times"
+    when :pending
+      "pencil"
+    end
+  end
 end

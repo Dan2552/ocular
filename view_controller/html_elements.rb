@@ -13,8 +13,7 @@ class HtmlElements
 
   def self.spec_button(id: nil, icon: icon)
     spec_button = <<-HTML
-      <button id="#{id}" class="btn btn-default btn-xs dropdown-toggle" type="button">
-        <i class="fa fa-#{icon}" aria-hidden="true"></i>
+      <button id="#{id}" class="btn btn-default btn-xs dropdown-toggle fa fa-#{icon}" type="button">
       </button>
     HTML
     Element.parse(spec_button)
